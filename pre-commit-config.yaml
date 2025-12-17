@@ -1,0 +1,88 @@
+repos:
+- repo: [https://github.com/pre-commit/pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks)
+  rev: v4.5.0
+  hooks:
+    # Basic checks
+    - id: check-yaml
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+- repo: [https://github.com/psf/black](https://github.com/psf/black)
+  rev: 24.3.0
+  hooks:
+    - id: black
+- repo: [https://github.com/charliermarsh/ruff-pre-commit](https://github.com/charliermarsh/ruff-pre-commit)
+  rev: v0.3.5
+  hooks:
+    - id: ruff
+      args: [--fix, --exit-non-zero-on-fix]
+- repo: [https://github.com/pre-commit/mirrors-mypy](https://github.com/pre-commit/mirrors-mypy)
+  rev: v1.9.0
+  hooks:
+    - id: mypy
+      # Arguments to check only the application code
+      args: [--ignore-missing-imports, app.py, models.py, services.py]
+```
+
+### 3.3 Install the Hooks
+Run these commands *once* after creating the config file:
+
+```bash
+# Install the pre-commit environment dependencies
+pre-commit install
+
+# Run the checks on all current files (optional, but good for cleanup)
+pre-commit run --all-files
+```
+Now, whenever you run `git commit`, these tools will execute automatically and block the commit if any code quality issues are found.
+
+## Step 4: Initialize Alembic for Database Migrations
+
+Alembic needs to be set up to manage your `User` and `Ticket` tables (Phase 2).
+
+### 4.1 Initialize Alembic Directory
+Run the following command:
+
+```bash
+alembic init alembic
+```
+This creates an `alembic/` directory and an `alembic.ini` configuration file.
+
+### 4.2 Configure `alembic.ini`
+You will need to open `alembic.ini` and locate the line for the `sqlalchemy.url`. **Uncomment it** and set it to your desired database URL. For local testing, you might use:
+
+```ini
+# alembic.ini (snippet)
+# ...
+sqlalchemy.url = postgresql+asyncpg://user:password@localhost/legal_db
+# ...
+```
+**(Note: Replace the user, password, and database name with your actual PostgreSQL connection string.)**
+
+### 4.3 Configure `env.py`
+Alembic needs to know where your SQLAlchemy models are defined. You must edit `alembic/env.py` to import your `Base` class (which defines the metadata for all your models).
+
+When you create your models (e.g., in a file named `models.py`), you will define a base metadata object. You need to import this metadata into `alembic/env.py` and assign it to the `target_metadata` variable.
+
+```python
+# alembic/env.py (snippet - modifications needed)
+
+# 1. Add this import to the top section:
+# import os
+# import sys
+# sys.path.append(os.getcwd()) # Ensures alembic can find local modules
+from models import Base # <--- THIS LINE is crucial. `Base` is your Declarative Base.
+
+# ... (down in the run_migrations_online function)
+# 2. Assign the target_metadata:
+# target_metadata = None # <--- COMMENT/REMOVE THIS LINE
+
+# ADD THIS LINE:
+target_metadata = Base.metadata 
+```
+
+## Next Step
+
+With the environment set up, you are ready to write the code for **Phase 1 & 2**:
+1.  Create `models.py` with the `User` and `Ticket` SQLAlchemy ORM definitions.
+2.  Set up the database connection and the FastAPI application in `app.py`.
+3.  Use Alembic to generate your first migration.

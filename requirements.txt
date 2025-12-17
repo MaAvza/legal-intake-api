@@ -1,0 +1,17 @@
+# FastAPI and server
+fastapi
+uvicorn[standard]
+requests
+
+# Database (async PostgreSQL)
+sqlalchemy
+asyncpg
+alembic
+
+# Security
+passlib[bcrypt]
+python-jose[cryptography]
+python-multipart
+
+# Validation
+pydantic[email]
