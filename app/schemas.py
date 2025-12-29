@@ -48,3 +48,20 @@ class TicketResponse(BaseModel):
 
     class Config:
         from_attributes = True  # Enables ORM mode for SQLAlchemy models
+
+
+# ==== Chat Schemas ====
+
+class ChatMessageCreate(BaseModel):
+    message_content: str
+    client_fingerprint: str
+
+class ChatMessageResponse(BaseModel):
+    id: int
+    message_content: str
+    created_at: datetime
+    is_from_user: bool  # True if associated with registered user
+    
+    class Config:
+        from_attributes = True
+
