@@ -1,0 +1,207 @@
+{
+  "common": {
+    "loading": "טוען...",
+    "error": "שגיאה",
+    "success": "הצלחה",
+    "save": "שמור",
+    "cancel": "בטל",
+    "delete": "מחק",
+    "edit": "ערוך",
+    "back": "חזור",
+    "next": "הבא",
+    "previous": "חזור",
+    "search": "חיפוש"
+  },
+
+  "header": {
+    "title": "עזריה אבזבקייב משרד עורכי דין",
+    "tagline": "ייעוץ משפטי מקצועי",
+    "home": "דף הבית",
+    "about": "אודות",
+    "services": "שירותים",
+    "contact": "יצירת קשר",
+    "login": "כניסה",
+    "logout": "ניתוק"
+  },
+
+  "hero": {
+    "welcome": "ברוכים הבאים",
+    "subtitle": "אנחנו כאן לעזור לך בכל שאלה משפטית",
+    "cta": "התחל עכשיו"
+  },
+
+  "ticketForm": {
+    "title": "שלח פנייה",
+    "description": "מלא את הפרטים ונחזור אליך בהקדם האפשרי",
+    
+    "fields": {
+      "name": {
+        "label": "שם מלא",
+        "placeholder": "הזן את שמך המלא",
+        "error": "נא להזין שם"
+      },
+      "email": {
+        "label": "כתובת דוא״ל",
+        "placeholder": "example@email.com",
+        "error": "נא להזין כתובת דוא״ל תקינה"
+      },
+      "phone": {
+        "label": "מספר טלפון",
+        "placeholder": "050-1234567",
+        "error": "נא להזין מספר טלפון תקין"
+      },
+      "summary": {
+        "label": "תיאור הבעיה המשפטית",
+        "placeholder": "ספר לנו בפירוט על המקרה שלך...",
+        "error": "נא להזין תיאור"
+      },
+      "urgency": {
+        "label": "רמת דחיפות",
+        "low": "נמוכה",
+        "high": "גבוהה"
+      }
+    },
+
+    "buttons": {
+      "submit": "שלח פנייה",
+      "submitting": "שולח...",
+      "clear": "נקה טופס"
+    },
+
+    "messages": {
+      "success": "הפנייה נשלחה בהצלחה! נחזור אליך בהקדם",
+      "error": "אירעה שגיאה בשליחת הפנייה. אנא נסה שוב.",
+      "validationError": "אנא מלא את כל השדות הנדרשים"
+    }
+  },
+
+  "chat": {
+    "title": "צ'אט",
+    "subtitle": "כאן תוכל לשוחח בעניינים כלליים",
+    "placeholder": "כתוב הודעה...",
+    "send": "שלח",
+    "typing": "מקליד...",
+    "online": "מחובר",
+    "offline": "לא מחובר",
+    "connecting": "מתחבר...",
+    "noMessages": "אין הודעות חדשות",
+    "startConversation": "התחל שיחה"
+  },
+
+  "footer": {
+    "company": "עזריה אבזבקייב עורך דין",
+    "address": "דרך חברון בית הנציב, ירושלים",
+    "privacy": "מדיניות פרטיות",
+    "terms": "תנאי שימוש",
+    "deleteData": "מחק את הנתונים שלי",
+    "copyright": "כל הזכויות שמורות © {{2026}}"
+  },
+
+  "admin": {
+    "nav": {
+      "dashboard": "לוח בקרה",
+      "tickets": "פניות",
+      "chat": "צ'אט",
+      "settings": "הגדרות",
+      "profile": "פרופיל",
+      "logout": "התנתק"
+    },
+
+    "dashboard": {
+      "title": "סקירה כללית",
+      "totalTickets": "סה״כ פניות",
+      "newTickets": "פניות חדשות",
+      "urgentTickets": "פניות דחופות",
+      "closedToday": "נסגרו היום"
+    },
+
+    "filters": {
+      "all": "הכל",
+      "new": "חדש",
+      "inProgress": "בטיפול",
+      "urgent": "דחוף",
+      "closed": "סגור",
+      "sortBy": "מיין לפי",
+      "priority": "עדיפות",
+      "date": "תאריך",
+      "status": "סטטוס"
+    },
+
+    "ticketCard": {
+      "priority": "עדיפות",
+      "status": "סטטוס",
+      "client": "לקוח",
+      "createdAt": "נוצר ב",
+      "updatedAt": "עודכן ב",
+      "viewDetails": "צפה בפרטים",
+      "reply": "השב"
+    },
+
+    "ticketDetail": {
+      "clientInfo": "מידע לקוח",
+      "name": "שם",
+      "email": "דוא״ל",
+      "phone": "טלפון",
+      "caseSummary": "תקציר תיק",
+      "conversation": "היסטוריית שיחה",
+      "updateStatus": "עדכן סטטוס",
+      "addNote": "הוסף הערה",
+      "save": "שמור שינויים",
+      "markAsUrgent": "סמן כדחוף",
+      "closeTicket": "סגור פנייה",
+      "reopenTicket": "פתח מחדש"
+    },
+
+    "statuses": {
+      "new": "חדש",
+      "acknowledged": "אושר קבלה",
+      "inProgress": "בטיפול",
+      "waitingForClient": "ממתין ללקוח",
+      "resolved": "נפתר",
+      "closed": "סגור"
+    }
+  },
+
+  "auth": {
+    "login": {
+      "title": "כניסה למערכת",
+      "email": "דוא״ל",
+      "password": "סיסמה",
+      "submit": "התחבר",
+      "forgotPassword": "שכחת סיסמה?",
+      "noAccount": "אין לך חשבון?",
+      "register": "הירשם"
+    },
+    "register": {
+      "title": "הרשמה",
+      "email": "דוא״ל",
+      "password": "סיסמה",
+      "confirmPassword": "אמת סיסמה",
+      "submit": "הירשם",
+      "hasAccount": "יש לך חשבון?",
+      "login": "התחבר"
+    },
+    "errors": {
+      "invalidCredentials": "דוא״ל או סיסמה שגויים",
+      "emailExists": "דוא״ל זה כבר רשום",
+      "passwordMismatch": "הסיסמאות אינן תואמות",
+      "weakPassword": "הסיסמה חלשה מדי"
+    }
+  },
+
+  "errors": {
+    "network": "בעיית רשת. אנא בדוק את החיבור שלך.",
+    "server": "שגיאת שרת. אנא נסה שוב מאוחר יותר.",
+    "unauthorized": "אין לך הרשאה לגשת לדף זה.",
+    "notFound": "הדף לא נמצא.",
+    "generic": "אירעה שגיאה. אנא נסה שוב."
+  },
+
+  "validation": {
+    "required": "שדה זה הוא חובה",
+    "email": "נא להזין כתובת דוא״ל תקינה",
+    "phone": "נא להזין מספר טלפון תקין",
+    "minLength": "חייב להכיל לפחות {{min}} תווים",
+    "maxLength": "לא יכול להכיל יותר מ-{{max}} תווים"
+  }
+}
