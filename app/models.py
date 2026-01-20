@@ -20,14 +20,23 @@ class User(Base):
     # Required for login (must be unique)
     email: Mapped[str] = mapped_column(String, unique=True, index=True, nullable=False)
     
-    # Hashed password (Phase 1) - Stores the bcrypt hash string.
-    # Note: Hashing logic lives in the CRUD layer, not here.
     hashed_password: Mapped[str] = mapped_column(String, nullable=False)
 
+    role: Mapped[str] = mapped_column(String, default="visitor", nullable=False)
+
+    # relations
     messages: Mapped[List["ChatMessage"]] = relationship("ChatMessage", back_populates="user")
-    
+    articles: Mapped[List["Article"]] = relationship("Article", back_populates="author")
+
+    # account tracking
+    created_at: Mapped[datetime.datetime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        nullable=False
+    )
+
     def __repr__(self) -> str:
-        return f"User(id={self.id!r}, email={self.email!r})"
+        return f"User(id={self.id!r}, email={self.email!r}, role={self.role!r})"
 
 
 class Ticket(Base):
@@ -77,7 +86,8 @@ class Ticket(Base):
 class ChatMessage(Base):
     """
     SQLAlchemy Model for chat messages.
-    (Phase 3 Focus: User Interaction)
+    Updated with article reference for context tracking.
+
     """
     __tablename__ = "chat_messages"
 
@@ -86,6 +96,10 @@ class ChatMessage(Base):
 
     # Foreign Key to Ticket
     # ticket_id: Mapped[int] = mapped_column(Integer, index=True, nullable=False)
+    # Contact Information (for non-registered users)
+    client_name: Mapped[Optional[str]] = mapped_column(String, nullable=True)
+    client_email: Mapped[Optional[str]] = mapped_column(String, nullable=True)
+    client_phone: Mapped[Optional[str]] = mapped_column(String, nullable=True)
 
     # Message Content
     message: Mapped[str] = mapped_column(String, nullable=False)
@@ -97,13 +111,77 @@ class ChatMessage(Base):
         nullable=False
     )
 
+    # link to registered user if logged in
     user_id: Mapped[Optional[int]] = mapped_column(
         Integer,
         ForeignKey("users.id"),
         nullable=True
     )
 
+    # When user clicks "Discuss This Topic", this stores which article prompted the inquiry
+    referenced_article_id: Mapped[Optional[int]] = mapped_column(
+        Integer,
+        ForeignKey("articles.id"),
+        nullable=True,
+        index=True
+    )
+
     user: Mapped[Optional["User"]] = relationship("User", back_populates="chat_messages")
+    referenced_article: Mapped[Optional["Article"]] = relationship("Article")
 
     def repr(self) -> str:
         return f"ChatMessage(id={self.id!r}, ticket_id={self.ticket_id!r}, message={self.message!r})"
+    
+
+class Article(Base):
+    """
+    SQLAlchemy Model for blog articles.
+    Admin-only content creation.
+    """
+    __tablename__ = "articles"
+
+    # Primary Key
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    
+    # Content Fields
+    title: Mapped[str] = mapped_column(String, nullable=False)
+    slug: Mapped[str] = mapped_column(String, unique=True, index=True, nullable=False)
+    excerpt: Mapped[str] = mapped_column(String, nullable=False)  # Short summary
+    content: Mapped[str] = mapped_column(String, nullable=False)  # Full HTML content
+    
+    # Categorization
+    category: Mapped[str] = mapped_column(String, index=True, nullable=False)
+    language: Mapped[str] = mapped_column(String, index=True, nullable=False)  # 'he' or 'ru'
+    
+    # Publishing Control
+    is_published: Mapped[bool] = mapped_column(default=False)
+    published_at: Mapped[Optional[datetime.datetime]] = mapped_column(
+        DateTime(timezone=True), 
+        nullable=True
+    )
+    
+    # Analytics 
+    view_count: Mapped[int] = mapped_column(Integer, default=0)
+    inquiry_count: Mapped[int] = mapped_column(Integer, default=0)
+    
+    # Author (Foreign Key to User)
+    author_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id"), nullable=False)
+    
+    # Relationships
+    author: Mapped["User"] = relationship("User", back_populates="articles")
+    
+    # Timestamps
+    created_at: Mapped[datetime.datetime] = mapped_column(
+        DateTime(timezone=True), 
+        server_default=func.now(), 
+        nullable=False
+    )
+    updated_at: Mapped[datetime.datetime] = mapped_column(
+        DateTime(timezone=True), 
+        server_default=func.now(),
+        onupdate=func.now(),
+        nullable=False
+    )
+    
+    def __repr__(self) -> str:
+        return f"Article(id={self.id!r}, title={self.title!r}, language={self.language!r})"
