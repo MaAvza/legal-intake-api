@@ -1,0 +1,37 @@
+/* Import fonts */
+@import './fonts.css';
+
+/* TailwindCSS base */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global variables */
+:root {
+  --bg-dark: #1D1E20;
+  --accent-blue: #4a83ecbd;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --radius: 6px;
+  --font-main: 'Inter', sans-serif;
+  --font-tech: 'JetBrains Mono', monospace;
+  --font-serif-he: 'Bellefair', serif;
+  --font-serif-ru: 'EB Garamond', serif;
+}
+
+/* Base styles */
+body {
+  background-color: var(--bg-dark);
+  font-family: var(--font-main);
+  color: #fff;
+}
+
+/* Language-specific fonts */
+html[lang="he"] {
+  font-family: var(--font-serif-he);
+  direction: rtl;
+}
+
+html[lang="ru"] {
+  font-family: var(--font-serif-ru);
+  direction: ltr;
+}

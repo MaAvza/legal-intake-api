@@ -1,71 +1,71 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# backend
-pycache/
+# Backend Python
+__pycache__/
 *.py[cod]
 *$py.class
-.env
-.venv
-venv/
-backend_bootcamp_env/
-ENV/
-build/
+*.so
+*.egg
+*.egg-info/
 dist/
-*.db
-*.sqlite
+build/
 
+# Virtual environments
 venv/
 ENV/
 env/
-.env
 .venv
+.env
+.env.local
+.env.*.local
 
-# frontend
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+*.cover
+
+# Alembic - KEEP ALEMBIC, IGNORE ONLY SPECIFIC FILES
+alembic/versions/*.pyc
+alembic/__pycache__/
+
+# Frontend
 node_modules/
+dist/
+dist-ssr/
+*.local
+.pnp
+.pnp.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnp
-.pnp.js
 
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-nosetests.xml
-coverage.xml
-
-.DS_Store
-.vscode/
-.idea/
-Thumbs.db
-
-.env.local
-.env.*.local
 *.pem
 *.key
+*.crt
+.env
+.env.example
+.env.local
+.env.production
+.env.development
+*.secret
+
+# OS
+.DS_Store
+Thumbs.db

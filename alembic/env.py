@@ -9,31 +9,30 @@ from alembic import context
 from app.models import Base
 from app.core.config import DATABASE_URL
 
-# this is the Alembic Config object, which provides
+# alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
 
-# Override sqlalchemy.url with our DATABASE_URL from config
-# Remove async driver for Alembic (use standard postgresql driver)
+# Override sqlalchemy.url with DATABASE_URL from config
+# Remove async driver for alembic (use standard postgresql driver)
 config.set_main_option(
     "sqlalchemy.url",
     DATABASE_URL.replace("postgresql+asyncpg://", "postgresql://")
 )
 
 # Interpret the config file for Python logging.
-# This line sets up loggers basically.
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Set target_metadata to our Base.metadata for autogenerate support
+#print(f"DEBUG: Detected tables: {Base.metadata.tables.keys()}")
+
+# Set target_metadata to Base.metadata for autogenerate support
 # This allows Alembic to detect model changes automatically
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
-# ... etc.
-
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode.
@@ -85,3 +84,4 @@ if context.is_offline_mode():
     run_migrations_offline()
 else:
     run_migrations_online()
+
