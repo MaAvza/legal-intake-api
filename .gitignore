@@ -41,7 +41,7 @@ htmlcov/
 .tox/
 *.cover
 
-# Alembic - KEEP ALEMBIC, IGNORE ONLY SPECIFIC FILES
+# Alembic
 alembic/versions/*.pyc
 alembic/__pycache__/
 

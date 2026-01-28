@@ -85,17 +85,14 @@ class Ticket(Base):
 
 class ChatMessage(Base):
     """
-    SQLAlchemy Model for chat messages.
+    SQLAlchemy Model for chat messages / contact inquiries.
     Updated with article reference for context tracking.
-
     """
     __tablename__ = "chat_messages"
 
     # Primary Key
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
 
-    # Foreign Key to Ticket
-    # ticket_id: Mapped[int] = mapped_column(Integer, index=True, nullable=False)
     # Contact Information (for non-registered users)
     client_name: Mapped[Optional[str]] = mapped_column(String, nullable=True)
     client_email: Mapped[Optional[str]] = mapped_column(String, nullable=True)
@@ -103,21 +100,21 @@ class ChatMessage(Base):
 
     # Message Content
     message: Mapped[str] = mapped_column(String, nullable=False)
-
-    # Timestamps
-    created_at: Mapped[datetime.datetime] = mapped_column(
+    
+    # Message Status Tracking
+    status: Mapped[str] = mapped_column(String, default="sent", nullable=False)
+    # Possible values: "sent", "delivered", "read"
+    
+    is_from_admin: Mapped[bool] = mapped_column(default=False, nullable=False)
+    # True if message is from lawyer, False if from client
+    
+    read_at: Mapped[Optional[datetime.datetime]] = mapped_column(
         DateTime(timezone=True),
-        server_default=func.now(),
-        nullable=False
-    )
-
-    # link to registered user if logged in
-    user_id: Mapped[Optional[int]] = mapped_column(
-        Integer,
-        ForeignKey("users.id"),
         nullable=True
     )
-
+    # Timestamp when message was read by recipient
+    
+    # Article Context Tracking
     # When user clicks "Discuss This Topic", this stores which article prompted the inquiry
     referenced_article_id: Mapped[Optional[int]] = mapped_column(
         Integer,
@@ -126,12 +123,27 @@ class ChatMessage(Base):
         index=True
     )
 
-    user: Mapped[Optional["User"]] = relationship("User", back_populates="chat_messages")
+    # Timestamps
+    created_at: Mapped[datetime.datetime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        nullable=False
+    )
+
+    # Link to registered user (if logged in)
+    user_id: Mapped[Optional[int]] = mapped_column(
+        Integer,
+        ForeignKey("users.id"),
+        nullable=True
+    )
+
+    # Relationships
+    user: Mapped[Optional["User"]] = relationship("User", back_populates="messages")
     referenced_article: Mapped[Optional["Article"]] = relationship("Article")
 
-    def repr(self) -> str:
-        return f"ChatMessage(id={self.id!r}, ticket_id={self.ticket_id!r}, message={self.message!r})"
-    
+    def __repr__(self) -> str:
+        return f"ChatMessage(id={self.id!r}, from={self.client_email or 'registered_user'}, article_ref={self.referenced_article_id})"
+
 
 class Article(Base):
     """
