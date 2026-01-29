@@ -1,0 +1,69 @@
+/* ============================================
+   FONTS IMPORTS
+   ============================================ */
+
+/* Main Font: Inter (Latin, Hebrew, Cyrillic support) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Technical/Code Font: JetBrains Mono */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* Hebrew Serif: Bellefair */
+@import url('https://fonts.googleapis.com/css2?family=Bellefair&display=swap');
+
+/* Hebrew Serif Alternative: Libre Baskerville (similar to Libertinus) */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+
+/* Russian Serif: EB Garamond */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap');
+
+/* Russian Serif Alternative: Cormorant Garamond */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+
+/* ============================================
+   FONT FAMILY VARIABLES
+   ============================================ */
+
+:root {
+  /* Main Fonts */
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial', sans-serif;
+  --font-technical: 'JetBrains Mono', 'Courier New', monospace;
+  
+  /* Hebrew Fonts */
+  --font-hebrew-serif: 'Bellefair', 'Libre Baskerville', serif;
+  --font-hebrew-sans: 'Inter', 'Arial', sans-serif;
+  
+  /* Russian Fonts */
+  --font-russian-serif: 'EB Garamond', 'Cormorant Garamond', 'Georgia', serif;
+  --font-russian-sans: 'Inter', 'Arial', sans-serif;
+}
+
+
+/* ============================================
+   FONT WEIGHT UTILITIES
+   ============================================ */
+
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+
+
+/* ============================================
+   FONT SIZE SCALE
+   ============================================ */
+
+:root {
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+}

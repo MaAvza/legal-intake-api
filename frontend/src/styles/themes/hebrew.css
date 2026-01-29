@@ -1,0 +1,288 @@
+/* ============================================
+   HEBREW FONT APPLICATION
+   ============================================ */
+
+/* Apply Hebrew serif font to content when language is Hebrew */
+html[lang="he"],
+html[lang="he"] body {
+  font-family: var(--font-hebrew-serif);
+  direction: rtl;
+}
+
+/* Sans-serif for UI elements even in Hebrew */
+html[lang="he"] .ui-element,
+html[lang="he"] button,
+html[lang="he"] .btn,
+html[lang="he"] input,
+html[lang="he"] select,
+html[lang="he"] textarea {
+  font-family: var(--font-hebrew-sans);
+}
+
+/* Serif for article content */
+html[lang="he"] .article-content,
+html[lang="he"] .blog-post,
+html[lang="he"] .legal-text {
+  font-family: var(--font-hebrew-serif);
+}
+
+
+/* ============================================
+   RTL LAYOUT ADJUSTMENTS
+   ============================================ */
+
+html[lang="he"] {
+  text-align: right;
+}
+
+/* Flip flexbox direction */
+html[lang="he"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+/* Margin and padding adjustments */
+html[lang="he"] .ml-auto { margin-left: 0; margin-right: auto; }
+html[lang="he"] .mr-auto { margin-right: 0; margin-left: auto; }
+html[lang="he"] .ps-4 { padding-left: 0; padding-right: 1rem; }
+html[lang="he"] .pe-4 { padding-right: 0; padding-left: 1rem; }
+html[lang="he"] .ms-2 { margin-left: 0; margin-right: 0.5rem; }
+html[lang="he"] .me-2 { margin-right: 0; margin-left: 0.5rem; }
+
+/* Text alignment */
+html[lang="he"] .text-left { text-align: right; }
+html[lang="he"] .text-right { text-align: left; }
+
+/* Border radius for RTL */
+html[lang="he"] .rounded-l-lg {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+html[lang="he"] .rounded-r-lg {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+
+/* ============================================
+   FORM ELEMENTS RTL
+   ============================================ */
+
+html[lang="he"] input[type="tel"],
+html[lang="he"] input[type="email"] {
+  direction: ltr; /* Keep email and phone LTR */
+  text-align: right;
+}
+
+html[lang="he"] .input-group .input-prefix {
+  order: 2;
+}
+
+html[lang="he"] .input-group .input {
+  order: 1;
+}
+
+
+/* ============================================
+   NAVIGATION RTL
+   ============================================ */
+
+html[lang="he"] .nav-menu {
+  text-align: right;
+}
+
+html[lang="he"] .dropdown-menu {
+  right: auto;
+  left: 0;
+}
+
+html[lang="he"] .breadcrumb > * + *::before {
+  content: "\\";
+  margin: 0 0.5rem;
+}
+
+
+/* ============================================
+   ICONS RTL
+   ============================================ */
+
+/* Flip directional icons */
+html[lang="he"] .icon-arrow-right {
+  transform: scaleX(-1);
+}
+
+html[lang="he"] .icon-chevron-right {
+  transform: rotate(180deg);
+}
+
+
+/* ============================================
+   TABLES RTL
+   ============================================ */
+
+html[lang="he"] table {
+  direction: rtl;
+}
+
+html[lang="he"] th,
+html[lang="he"] td {
+  text-align: right;
+}
+
+html[lang="he"] th:first-child,
+html[lang="he"] td:first-child {
+  border-right: none;
+}
+
+html[lang="he"] th:last-child,
+html[lang="he"] td:last-child {
+  border-left: none;
+  border-right: 1px solid var(--color-gray-200);
+}
+
+
+/* ============================================
+   MODAL & DIALOG RTL
+   ============================================ */
+
+html[lang="he"] .modal-header {
+  text-align: right;
+}
+
+html[lang="he"] .modal-close {
+  right: auto;
+  left: 1rem;
+}
+
+
+/* ============================================
+   LEGAL DOCUMENT FORMATTING
+   ============================================ */
+
+html[lang="he"] .legal-document {
+  font-family: var(--font-hebrew-serif);
+  line-height: 1.8;
+  text-align: justify;
+}
+
+html[lang="he"] .legal-document h1,
+html[lang="he"] .legal-document h2,
+html[lang="he"] .legal-document h3 {
+  font-family: var(--font-hebrew-sans);
+  font-weight: 700;
+}
+
+html[lang="he"] .legal-section {
+  margin-bottom: 2rem;
+}
+
+html[lang="he"] .legal-section-number {
+  font-weight: 700;
+  margin-left: 0.5rem; /* Flipped for RTL */
+}
+
+
+/* ============================================
+   TYPOGRAPHY ADJUSTMENTS
+   ============================================ */
+
+/* Increase letter spacing for better Hebrew readability */
+html[lang="he"] p,
+html[lang="he"] li {
+  letter-spacing: 0.01em;
+}
+
+/* Adjust line height for Hebrew text */
+html[lang="he"] .article-content p {
+  line-height: 1.8;
+}
+
+/* Hebrew quotation marks */
+html[lang="he"] q::before { content: '"'; }
+html[lang="he"] q::after { content: '"'; }
+
+html[lang="he"] blockquote {
+  border-right: 4px solid var(--color-accent-blue);
+  border-left: none;
+  padding-right: var(--spacing-lg);
+  padding-left: 0;
+}
+
+
+/* ============================================
+   ADMIN DASHBOARD RTL
+   ============================================ */
+
+html[lang="he"] .dashboard-sidebar {
+  right: 0;
+  left: auto;
+}
+
+html[lang="he"] .dashboard-content {
+  margin-right: 250px;
+  margin-left: 0;
+}
+
+html[lang="he"] .stat-card {
+  text-align: right;
+}
+
+
+/* ============================================
+   BADGE & TAG RTL
+   ============================================ */
+
+html[lang="he"] .badge {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+
+/* ============================================
+   LIST RTL
+   ============================================ */
+
+html[lang="he"] ul,
+html[lang="he"] ol {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+html[lang="he"] li::marker {
+  unicode-bidi: isolate;
+}
+
+
+/* ============================================
+   HEBREW NUMBERS
+   ============================================ */
+
+/* Use Hebrew numerals in ordered lists if desired */
+html[lang="he"] .hebrew-numerals {
+  list-style-type: hebrew;
+}
+
+
+/* ============================================
+   RESPONSIVE RTL ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  html[lang="he"] .mobile-menu {
+    right: 0;
+    left: auto;
+  }
+  
+  html[lang="he"] .drawer {
+    right: -100%;
+    left: auto;
+  }
+  
+  html[lang="he"] .drawer.open {
+    right: 0;
+  }
+}

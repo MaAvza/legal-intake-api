@@ -4,38 +4,38 @@ import { useEffect } from 'react'
 function LanguageSwitcher() {
   const { i18n } = useTranslation()
 
-  // Set document direction on mount and language change
   useEffect(() => {
-    const direction = i18n.language === 'he' ? 'rtl' : 'ltr'
-    document.documentElement.dir = direction
+    // Update HTML lang attribute when language changes
     document.documentElement.lang = i18n.language
   }, [i18n.language])
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng)
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang)
+    // Save to localStorage
+    localStorage.setItem('i18nextLng', lang)
   }
 
+  const currentLang = i18n.language
+
   return (
-    <div className="flex gap-2">
+    <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
       <button
         onClick={() => changeLanguage('he')}
-        className={`px-4 py-2 rounded-lg font-medium transition-all ${
-          i18n.language === 'he'
-            ? 'bg-blue-600 text-white shadow-md'
-            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+        className={`px-3 py-2 rounded-md text-sm font-medium transition ${
+          currentLang === 'he'
+            ? 'bg-white text-blue-600 shadow-sm'
+            : 'text-gray-600 hover:text-gray-900'
         }`}
-        aria-label="Switch to Hebrew"
       >
         עברית
       </button>
       <button
         onClick={() => changeLanguage('ru')}
-        className={`px-4 py-2 rounded-lg font-medium transition-all ${
-          i18n.language === 'ru'
-            ? 'bg-blue-600 text-white shadow-md'
-            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+        className={`px-3 py-2 rounded-md text-sm font-medium transition ${
+          currentLang === 'ru'
+            ? 'bg-white text-blue-600 shadow-sm'
+            : 'text-gray-600 hover:text-gray-900'
         }`}
-        aria-label="Switch to Russian"
       >
         Русский
       </button>

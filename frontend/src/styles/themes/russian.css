@@ -1,0 +1,220 @@
+/* ============================================
+   RUSSIAN FONT APPLICATION
+   ============================================ */
+
+/* Apply Russian serif font to content when language is Russian */
+html[lang="ru"],
+html[lang="ru"] body {
+  font-family: var(--font-russian-serif);
+  direction: ltr;
+}
+
+/* Sans-serif for UI elements even in Russian */
+html[lang="ru"] .ui-element,
+html[lang="ru"] button,
+html[lang="ru"] .btn,
+html[lang="ru"] input,
+html[lang="ru"] select,
+html[lang="ru"] textarea {
+  font-family: var(--font-russian-sans);
+}
+
+/* Serif for article content */
+html[lang="ru"] .article-content,
+html[lang="ru"] .blog-post,
+html[lang="ru"] .legal-text {
+  font-family: var(--font-russian-serif);
+}
+
+
+/* ============================================
+   LTR EXPLICIT SETTINGS
+   ============================================ */
+
+html[lang="ru"] {
+  text-align: left;
+  direction: ltr;
+}
+
+/* Ensure standard LTR layout */
+html[lang="ru"] .flex-row {
+  flex-direction: row;
+}
+
+
+/* ============================================
+   TYPOGRAPHY ADJUSTMENTS FOR CYRILLIC
+   ============================================ */
+
+/* Cyrillic text often looks better with slightly increased letter spacing */
+html[lang="ru"] p,
+html[lang="ru"] li {
+  letter-spacing: 0.01em;
+}
+
+/* Adjust line height for Russian text */
+html[lang="ru"] .article-content p {
+  line-height: 1.7;
+}
+
+/* Russian quotation marks */
+html[lang="ru"] q::before { content: '«'; }
+html[lang="ru"] q::after { content: '»'; }
+
+html[lang="ru"] blockquote {
+  border-left: 4px solid var(--color-accent-blue);
+  padding-left: var(--spacing-lg);
+  font-style: italic;
+}
+
+
+/* ============================================
+   LEGAL DOCUMENT FORMATTING
+   ============================================ */
+
+html[lang="ru"] .legal-document {
+  font-family: var(--font-russian-serif);
+  line-height: 1.8;
+  text-align: justify;
+}
+
+html[lang="ru"] .legal-document h1,
+html[lang="ru"] .legal-document h2,
+html[lang="ru"] .legal-document h3 {
+  font-family: var(--font-russian-sans);
+  font-weight: 700;
+}
+
+html[lang="ru"] .legal-section {
+  margin-bottom: 2rem;
+}
+
+html[lang="ru"] .legal-section-number {
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+
+/* ============================================
+   TABLES
+   ============================================ */
+
+html[lang="ru"] table {
+  direction: ltr;
+}
+
+html[lang="ru"] th,
+html[lang="ru"] td {
+  text-align: left;
+}
+
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+
+html[lang="ru"] input[type="tel"],
+html[lang="ru"] input[type="email"] {
+  direction: ltr;
+  text-align: left;
+}
+
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+html[lang="ru"] .nav-menu {
+  text-align: left;
+}
+
+html[lang="ru"] .dropdown-menu {
+  left: 0;
+  right: auto;
+}
+
+html[lang="ru"] .breadcrumb > * + *::before {
+  content: "/";
+  margin: 0 0.5rem;
+}
+
+
+/* ============================================
+   LISTS
+   ============================================ */
+
+html[lang="ru"] ul,
+html[lang="ru"] ol {
+  padding-left: 1.5rem;
+  padding-right: 0;
+}
+
+
+/* ============================================
+   MODAL & DIALOG
+   ============================================ */
+
+html[lang="ru"] .modal-header {
+  text-align: left;
+}
+
+html[lang="ru"] .modal-close {
+  right: 1rem;
+  left: auto;
+}
+
+
+/* ============================================
+   DASHBOARD
+   ============================================ */
+
+html[lang="ru"] .dashboard-sidebar {
+  left: 0;
+  right: auto;
+}
+
+html[lang="ru"] .dashboard-content {
+  margin-left: 250px;
+  margin-right: 0;
+}
+
+html[lang="ru"] .stat-card {
+  text-align: left;
+}
+
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  html[lang="ru"] .mobile-menu {
+    left: 0;
+    right: auto;
+  }
+  
+  html[lang="ru"] .drawer {
+    left: -100%;
+    right: auto;
+  }
+  
+  html[lang="ru"] .drawer.open {
+    left: 0;
+  }
+}
+
+
+/* ============================================
+   CYRILLIC-SPECIFIC IMPROVEMENTS
+   ============================================ */
+
+/* Improve readability of Cyrillic small caps */
+html[lang="ru"] .small-caps {
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+/* Cyrillic number formatting */
+html[lang="ru"] .number {
+  font-variant-numeric: oldstyle-nums;
+}
